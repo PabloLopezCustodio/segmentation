@@ -4,7 +4,7 @@ services:
     build: .
     environment:
       ROS_MASTER_URI: http://10.0.2.3:11311
-      ROS_IP: 10.0.11.50
+      ROS_IP: 10.0.2.11
     deploy:
       resources:
         reservations:
@@ -12,12 +12,6 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
-    networks:
-      default:
-        ipv4_address: 10.0.11.50
+    network_mode: "host"
     volumes:
       - ./unseen_object_clustering:/workspace/src/unseen_object_clustering
-
-networks:
-  default:
-    name: docker-vlan
